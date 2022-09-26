@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-bedrooms',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BedroomsComponent implements OnInit {
 
-  constructor() { }
+  bedrooms: any[] = [];
+
+  constructor(
+    private generalService: GeneralService
+  ) { }
 
   ngOnInit(): void {
+    this.getData();
+  }
+
+  getData(){
+    this.bedrooms = this.generalService.getBedrooms();
   }
 
 }

@@ -1,1 +1,12 @@
-<p>bedrooms works!</p>
+<div class="container">
+    <div *ngFor="let bed of bedrooms">
+        <div class="card" style="width: 36rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{bed.Name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{bed.Address}}</h6>
+              <p class="card-text">{{bed.Notes}}</p>
+              <a [routerLink]="['/reserve']" class="card-link">Reserve</a>
+            </div>
+          </div>
+    </div>
+</div>
