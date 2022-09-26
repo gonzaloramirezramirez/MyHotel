@@ -10,6 +10,8 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class LoginComponent implements OnInit {
 
+  isLoged: boolean = false;
+
   credentials = new FormGroup({
     user : new FormControl(''),
     password : new FormControl('')
@@ -37,10 +39,17 @@ export class LoginComponent implements OnInit {
 
     //Validate user and password
     if (form.user && form.password) {
-      this.generalService.login(form.user,form.password);
-      this.router.navigate(['/home']);
-    } 
-         
+      if(this.generalService.login(form.user,form.password)){
+        this.isLoged = true;
+        this.router.navigate(['/home']);
+      }
+      else{
+        this.isLoged = false;
+      }
+    }
+    else{
+      this.isLoged = false;
+    }    
   }
 
   async onUserSet(){

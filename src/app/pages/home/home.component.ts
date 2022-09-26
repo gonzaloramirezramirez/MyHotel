@@ -10,6 +10,10 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class HomeComponent implements OnInit {
 
+  SelectedType: number = 0;
+  Typs: any[] = []; 
+  Today: Date = new Date();
+
   constructor(
     private generalService: GeneralService,
     private router: Router
@@ -27,7 +31,9 @@ export class HomeComponent implements OnInit {
     checkOut : new FormControl('')
   });
 
-  
+  getMinDate(){
+    return this.Today;
+  }
 
   reserve() {
     //Use EventEmitter with form value
@@ -35,7 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   LoadData(){
-    const typs = this.generalService.getRomsType();
+    this.Typs = this.generalService.getRomsType();
   }
 
   getValue(){

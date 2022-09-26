@@ -6,12 +6,18 @@
 
       <div class="col-auto">
         <label for="room-type">Room </label>
-        <input type="text" id="room-type" class="form-control" formControlName="roomType">
+        <select class="form-control" formControlName="roomType" placeholder="Selectes a type of room">
+          <option *ngFor="let type of Typs" [ngValue]="type">
+            {{ type.RoomType }}
+          </option>
+        </select>
       </div>
 
       <div class="col-auto">
         <label for="check-in">Check In </label>
-        <input type="date" id="check-in" class="form-control" formControlName="checkIn">
+        <input type="date" id="check-in" class="form-control" formControlName="checkIn"
+        placeholder="mm-dd-yyyy"
+        min="getMinDate()" max="12/31/2030">
       </div>
   
       <div class="col-auto">
@@ -20,8 +26,10 @@
       </div>
 
       <div class="col-auto">
-        <p *ngIf="!getValue()">Complete the form to enable button.</p>
-        <button [ngClass]="{'btn btn-primary': getValue(),'btn btn-secondary': !getValue()}" type="submit" [disabled]="!getValue()">Reserve</button>
+        <div *ngIf="!getValue()" class="alert alert-danger" role="alert">
+          Complete the form to enable button.
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!getValue()">Reserve</button>
       </div>
   
     </form>
