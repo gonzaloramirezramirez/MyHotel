@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
@@ -37,7 +38,17 @@ export class HomeComponent implements OnInit {
 
   reserve() {
     //Use EventEmitter with form value
-    this.router.navigate(['/reserve']);
+    const form = this.myForm.value;
+    this.goToReserve(form.roomType,form.checkIn,form.checkOut);
+  }
+
+  goToReserve(roomType: any,checkIn: any,checkOut: any){
+    
+    moment.locale('es');
+    const start: number = moment(checkIn, 'MM/DD/YYYY').toDate().getTime();
+    const end: number = moment(checkOut, 'MM/DD/YYYY').toDate().getTime();
+    
+    this.router.navigate(['/reserve',roomType.Id,start,end]);
   }
 
   LoadData(){

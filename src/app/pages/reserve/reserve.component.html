@@ -1,2 +1,79 @@
 
-<h1>Reserves</h1>
+<div class="container">
+    
+    <form [formGroup]="myForm" (ngSubmit)="confirmReserve()" class="row g-3">
+        <div><h2>Reservation data</h2></div>
+
+        <div class="mb-3 row">
+            <label for="room" class="col-sm-2 col-form-label">Room</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="room" [value]="room">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="checkIn" class="col-sm-2 col-form-label">Check In</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="checkIn" [value]="getValueCheckIn()">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="checkOut" class="col-sm-2 col-form-label">check Out</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="checkOut" [value]="getValuecheckOut()">
+            </div>
+        </div>
+
+        <div><h2>Please fill your information for the reservation</h2></div>
+
+        <div class="mb-3">
+            <label for="First" class="form-label">First name</label>
+            <input type="text" class="form-control" id="First" formControlName="first">
+        </div>
+
+        <div class="mb-3">
+            <label for="Last" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="Last" formControlName="last">
+        </div>
+
+        <div class="mb-3">
+            <label for="Email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="Email" placeholder="name@example.com" formControlName="email">
+        </div>
+
+        <div class="mb-3">
+            <label for="Favorite" class="form-label">Choose your favorite color</label>
+            <input type="color" class="form-control form-control-color" id="Favorite" value="#563d7c" formControlName="color" title="Choose your color">
+        </div>
+
+        <div class="mb-3">
+            <label for="colorSel" class="form-label">Color selected</label>
+            <div id="colorSel" class="form-control" [ngStyle]="{'background-color': getColor()}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="Observations" class="form-label">Observations and suggestions</label>
+            <textarea class="form-control" id="Observations" rows="3" formControlName="obs"></textarea>
+        </div>
+        
+        <div class="col-auto">
+            <label for="staticIdentity" class="visually-hidden">Identity type</label>
+            <select id="staticIdentity" class="form-select" aria-label="Default select example" formControlName="staticIdentity">
+                <option selected>Select your identity</option>
+                <option value="1">Cédula de identidad</option>
+                <option value="2">Passport</option>
+                <option value="3">DNI</option>
+                <option value="4">C.C</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label for="inputIdentity2" class="visually-hidden">Number</label>
+            <input type="text" class="form-control" id="inputIdentity2" placeholder="Number">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Send reservation</button>
+        </div>
+    </form>
+</div>
+  

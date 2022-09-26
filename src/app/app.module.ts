@@ -10,12 +10,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { NavbarModule } from '@shared/navbar/navbar.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatMomentDateModule} from '@angular/material-moment-adapter';
 
 const appRoutes:Routes=[
   { path: '', redirectTo:'/login', pathMatch:'full'},
   { path: 'login', component:LoginComponent},
   { path: 'home', component:HomeComponent},
-  { path: 'reserve', component:ReserveComponent},
+  { path: 'reserve/:roomtype/:checkin/:checkout', component:ReserveComponent},
   { path: 'bedrooms', component:BedroomsComponent},
   { path: '**', redirectTo:'/home', pathMatch:'full'},
 ];
@@ -33,9 +36,12 @@ const appRoutes:Routes=[
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NavbarModule
+    NavbarModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule, 
+    MatMomentDateModule
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

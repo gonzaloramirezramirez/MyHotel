@@ -5,8 +5,8 @@
     <form [formGroup]="myForm" (ngSubmit)="reserve()" class="row g-3">
 
       <div class="col-auto">
-        <label for="room-type">Room </label>
-        <select class="form-control" formControlName="roomType" placeholder="Selectes a type of room">
+        <label for="room-type">Type of Room:&nbsp; </label>
+        <select class="form-control" formControlName="roomType" style="display: inline; width: 150px;">
           <option *ngFor="let type of Typs" [ngValue]="type">
             {{ type.RoomType }}
           </option>
@@ -14,15 +14,17 @@
       </div>
 
       <div class="col-auto">
-        <label for="check-in">Check In </label>
-        <input type="date" id="check-in" class="form-control" formControlName="checkIn"
-        placeholder="mm-dd-yyyy"
-        min="getMinDate()" max="12/31/2030">
+        <label for="check-in">Check In:&nbsp; </label>
+        <input matInput [matDatepicker]="pickerIn" id="check-in" class="form-control" formControlName="checkIn" style="display: inline; width: 150px;">
+        <mat-datepicker-toggle matSuffix [for]="pickerIn"></mat-datepicker-toggle>
+        <mat-datepicker #pickerIn></mat-datepicker>
       </div>
   
       <div class="col-auto">
-        <label for="check-out">Check Out: </label>
-        <input type="date" id="check-out" class="form-control" formControlName="checkOut">
+        <label for="check-out">Check Out:&nbsp; </label>
+        <input matInput [matDatepicker]="pickerOut" id="check-out" class="form-control" formControlName="checkOut" style="display: inline; width: 150px;">
+        <mat-datepicker-toggle matSuffix [for]="pickerOut"></mat-datepicker-toggle>
+        <mat-datepicker #pickerOut></mat-datepicker>
       </div>
 
       <div class="col-auto">
