@@ -1,0 +1,28 @@
+
+<div class="container">
+    <h1>Bookings</h1>
+  
+    <form [formGroup]="myForm" (ngSubmit)="reserve()" class="row g-3">
+
+      <div class="col-auto">
+        <label for="room-type">Room </label>
+        <input type="text" id="room-type" class="form-control" formControlName="roomType">
+      </div>
+
+      <div class="col-auto">
+        <label for="check-in">Check In </label>
+        <input type="date" id="check-in" class="form-control" formControlName="checkIn">
+      </div>
+  
+      <div class="col-auto">
+        <label for="check-out">Check Out: </label>
+        <input type="date" id="check-out" class="form-control" formControlName="checkOut">
+      </div>
+
+      <div class="col-auto">
+        <p *ngIf="!getValue()">Complete the form to enable button.</p>
+        <button [ngClass]="{'btn btn-primary': getValue(),'btn btn-secondary': !getValue()}" type="submit" [disabled]="!getValue()">Reserve</button>
+      </div>
+  
+    </form>
+  </div>

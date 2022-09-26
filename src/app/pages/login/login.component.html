@@ -1,0 +1,39 @@
+<div>
+    <form (ngSubmit)="login()" [formGroup]="credentials">
+        <div class="login-background">
+          <h1>Log in</h1>
+          <!-- class="input-group" -->
+          <div class="login-container">
+    
+            <!--User-->
+            <label for="user">User</label>
+            <div class="login-field">
+                <input id="user" type="email" formControlName="user">
+            </div>
+            <div *ngIf="!credentials.valid" class="errors">
+                <p>User is required.</p>
+            </div>
+    
+            <!--Password-->
+            <label for="pass">Password</label>
+            <div class="login-field">
+                <input id="pass" type="password" formControlName="password">
+            </div>
+            <div *ngIf="!credentials.valid" class="errors">
+                <p>Password is required</p>
+                <p>Password is a minimum of 8 characters.</p>
+            </div>
+    
+          </div>
+        </div>
+    
+        <div>
+          <ul style="padding-top: 20px;">
+            <button class="btn btn-primary col-md-6 offset-md-3 me-auto" type="submit" >LOGIN</button>
+          </ul>
+        </div>
+        <a class="login-link" href="javascript:void(0);">¿Forgot your password?</a>
+        
+      </form>
+</div>
+
