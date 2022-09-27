@@ -30,16 +30,25 @@
         <div class="mb-3">
             <label for="First" class="form-label">First name</label>
             <input type="text" class="form-control" id="First" formControlName="first">
+            <div *ngIf="!myForm.valid" class="errors" style="color: red;">
+                <p>First name is required.</p>
+            </div>
         </div>
 
         <div class="mb-3">
             <label for="Last" class="form-label">Last name</label>
             <input type="text" class="form-control" id="Last" formControlName="last">
+            <div *ngIf="!myForm.valid" class="errors" style="color: red;">
+                <p>Last name is required.</p>
+            </div>
         </div>
 
         <div class="mb-3">
             <label for="Email" class="form-label">Email address</label>
             <input type="email" class="form-control" id="Email" placeholder="name@example.com" formControlName="email">
+            <div *ngIf="!myForm.valid" class="errors" style="color: red;">
+                <p>Email address is required.</p>
+            </div>
         </div>
 
         <div class="mb-3">
@@ -69,10 +78,10 @@
         </div>
         <div class="col-auto">
             <label for="inputIdentity2" class="visually-hidden">Number</label>
-            <input type="text" class="form-control" id="inputIdentity2" placeholder="Number">
+            <input type="text" class="form-control" id="inputIdentity2" placeholder="Number" formControlName="Number">
         </div>
         <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">Send reservation</button>
+            <button type="submit" class="btn btn-primary mb-3" [disabled]="!getValue()">Send reservation</button>
         </div>
         
         <div class="mb-3">

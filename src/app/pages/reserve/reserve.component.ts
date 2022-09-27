@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralService } from 'src/app/services/general.service';
 
@@ -21,13 +21,15 @@ export class ReserveComponent implements OnInit {
     last : new FormControl(''),
     email : new FormControl(''),
     color : new FormControl(''),
-    obs : new FormControl('')
-    
+    obs : new FormControl(''),
+    staticIdentity : new FormControl(''),
+    Number : new FormControl('')
   });
 
   constructor(
     private generalService: GeneralService,
     private router: Router,
+    private fb: FormBuilder,
     private activatedRoute: ActivatedRoute
   ){
 
@@ -39,6 +41,16 @@ export class ReserveComponent implements OnInit {
     this.checkOut = this.generalService.DateToStringFormat(new Date(+this.activatedRoute.snapshot.params['checkout']),'MM/DD/YYYY');
     const types = this.generalService.getRomsType();
     this.LoadData(types);
+
+    this.myForm = this.fb.group({
+      first: ['', [Validators.required]],
+      last: ['', [Validators.required,]],
+      email: ['', [Validators.required]],
+      color: ['', []],
+      obs: ['', []],
+      staticIdentity: ['', []],
+      Number: ['', []]
+    });
   }
 
   LoadData(types: any){
@@ -61,6 +73,16 @@ export class ReserveComponent implements OnInit {
 
   getValuecheckOut(){
     return this.checkOut;
+  }
+
+  getValue(){
+    const form = this.myForm.value;
+    if(form.first && form.last && form.email){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
   async confirmReserve(){
