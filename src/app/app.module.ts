@@ -13,6 +13,7 @@ import { NavbarModule } from '@shared/navbar/navbar.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule} from '@angular/material-moment-adapter';
+import { FilterPipe } from './pipes/filter.pipe';
 
 const appRoutes:Routes=[
   { path: '', redirectTo:'/login', pathMatch:'full'},
@@ -29,7 +30,8 @@ const appRoutes:Routes=[
     ReserveComponent,
     BedroomsComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    FilterPipe
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

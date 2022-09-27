@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
@@ -9,6 +10,11 @@ import { GeneralService } from 'src/app/services/general.service';
 export class BedroomsComponent implements OnInit {
 
   bedrooms: any[] = [];
+  searchText: string = '';
+
+  myForm = new FormGroup({
+    search : new FormControl('')
+  });
 
   constructor(
     private generalService: GeneralService
@@ -20,6 +26,20 @@ export class BedroomsComponent implements OnInit {
 
   getData(){
     this.bedrooms = this.generalService.getBedrooms();
+  }
+
+  searchItem(value: any){
+    this.searchText = value;
+  }
+
+  getValue(){
+    const form = this.myForm.value;
+    this.searchItem(form.search);
+    return true;
+  }
+
+  confirm(){
+
   }
 
 }

@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  searchText: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  searchItem(e: any){
+    this.searchText = e.detail.value;
   }
 
 }

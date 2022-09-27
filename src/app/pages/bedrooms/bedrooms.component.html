@@ -1,12 +1,25 @@
 <div class="container">
-    <div *ngFor="let bed of bedrooms">
-        <div class="card" style="width: 36rem;">
-            <div class="card-body">
-              <h5 class="card-title">{{bed.Name}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{bed.Address}}</h6>
-              <p class="card-text">{{bed.Notes}}</p>
-              <a [routerLink]="['/reserve']" class="card-link">Reserve</a>
-            </div>
-          </div>
-    </div>
+    
+    <form [formGroup]="myForm" (ngSubmit)="confirm()" class="row g-3">
+        <div *ngIf="getValue()">
+        </div>
+        <div class="form-group">
+            <label for="search-text"><h2>Search Bedroom</h2></label>
+            <input type="text" class="form-control" id="search-text" aria-describedby="search-text"  formControlName="search"
+                [value]="searchText" placeholder="Enter text to search" 
+                autofocus>
+        </div>
+    
+        <div *ngFor="let bed of bedrooms | filter: searchText: 'Name'">
+            <div class="card" >
+                <div class="card-body">
+                  <h5 class="card-title">{{bed.Name}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{bed.Address}}</h6>
+                  <p class="card-text">{{bed.Notes}}</p>
+                  <a [routerLink]="['/reserve']" class="card-link">Reserve</a>
+                </div>
+              </div>
+        </div>
+    </form>
+    
 </div>
