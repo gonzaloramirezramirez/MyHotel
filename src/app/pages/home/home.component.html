@@ -6,7 +6,7 @@
 
       <div class="col-auto">
         <label for="room-type">Type of Room:&nbsp; </label>
-        <select class="form-control" formControlName="roomType" style="display: inline; width: 150px;">
+        <select class="form-control" formControlName="roomType" style="display: inline; width: 185px;">
           <option *ngFor="let type of Typs" [ngValue]="type">
             {{ type.RoomType }}
           </option>
@@ -15,7 +15,8 @@
 
       <div class="col-auto">
         <label for="check-in">Check In:&nbsp; </label>
-        <input matInput [matDatepicker]="pickerIn" id="check-in" class="form-control" formControlName="checkIn" style="display: inline; width: 150px;">
+        <input matInput [matDatepicker]="pickerIn" id="check-in" class="form-control" formControlName="checkIn" 
+        style="display: inline; width: 150px;">
         <mat-datepicker-toggle matSuffix [for]="pickerIn"></mat-datepicker-toggle>
         <mat-datepicker #pickerIn></mat-datepicker>
       </div>
